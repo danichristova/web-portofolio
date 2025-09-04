@@ -91,16 +91,16 @@
         </div>
     </section>
 
-    <section id="service">
+    <section id="service" style="scroll-margin-top: 300px;">
         <div class="container text-center">
             <h2 class="service-text">Kelebihan di Warung Pepak</h2>
-            <div class="row justify-content-center" style="padding-top: 10px;">
+            <div class="row justify-content-center" style="padding-top: 50px;">
 
                 <div class="col-md-3">
                     <div class="card p-3">
                         <img src="asset/img/delivery.svg" class="mx-auto d-block" alt="delivery" style="width: 60px;">
                         <div class="card-body">
-                            <h5 class="card-title">Cepat Sampai</h5>
+                            <h5 class="card-title" style="padding-top: 10px;">Cepat Sampai</h5>
                             <p class="card-text">Pesanan Anda dikirim dengan cepat dan tepat waktu.</p>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                     <div class="card p-3">
                         <img src="asset/img/tag.svg" class="mx-auto d-block" alt="harga" style="width: 60px;">
                         <div class="card-body">
-                            <h5 class="card-title">Harga Terjangkau</h5>
+                            <h5 class="card-title" style="padding-top: 10px;">Harga Terjangkau</h5>
                             <p class="card-text">Produk berkualitas dengan harga ramah di kantong.</p>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                     <div class="card p-3">
                         <img src="asset/img/clock.svg" class="mx-auto d-block" alt="jam" style="width: 60px;">
                         <div class="card-body">
-                            <h5 class="card-title">Buka Sampai Malam</h5>
+                            <h5 class="card-title" style="padding-top: 10px;">Buka Sampai Malam</h5>
                             <p class="card-text">Buka dari jam 6 pagi sampai 10 malam.</p>
                         </div>
                     </div>
@@ -130,14 +130,14 @@
         </div>
     </section>
 
-    <section id="tentang">
-        <div class="container">
-            <h2 class="service-text text-center">Tentang Kami</h2>
+    <section id="tentang" style="scroll-margin-top: 0px;">
+        <div class="container" >
+            <h2 class="service-text text-center" style="padding-top: 90px;">Tentang Kami</h2>
             <div class="row align-items-center justify-content-center" style="padding-top: 40px;">
                 <div class="col-xl d-flex justify-content-center">
                     <img src="asset/img/mbako1.png" width="100%">
                 </div>
-                <div class="col-xl">
+                <div class="col-xl" >
                     <p class="tentang-text">
                         Sejak tahun 2020, <strong>Warung Pepak</strong> hadir sebagai solusi belanja kebutuhan
                         sehari-hari Anda.
@@ -175,7 +175,7 @@
         <div class="container text-center">
 
             <h2 class="service-text text-center">Kontak & Lokasi</h2>
-            <p class="mb-1">📍 Jl. Singosari Selatan II No. 24, Nusukan, Banjarsari, Surakarta</p>
+            <p class="mb-1" style="padding-top: 20px;">📍 Jl. Singosari Selatan II No. 24, Nusukan, Banjarsari, Surakarta</p>
             <p class="mb-1">📞 WhatsApp: <a href="https://wa.me/6281575791089"
                     class="text-decoration-none">0815-7579-1089</a></p>
             <div class="d-flex justify-content-center">
@@ -197,46 +197,37 @@
 
 
     <section id="testimoni">
-        <div class="container" style="padding-top: 10px;">
+        <div class="container" style="padding-top: 50px;">
             <h3 class="testimoni-text text-center">Apa Kata Pelanggan Kami</h3>
             <div class="row justify-content-center">
 
                 <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-sm border-0 h-130">
                         <div class="card-body">
                             <h5 class="card-title">Budi Santoso</h5>
                             <p class="card-text">"Warung Pepak sangat lengkap dan harganya terjangkau. Pelayanannya juga
                                 ramah!"</p>
-                            <p class="text-warning">
-                                ★★★★☆
-                            </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimoni 2 -->
                 <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-sm border-0 h-130">
                         <div class="card-body">
                             <h5 class="card-title">Siti Aminah</h5>
                             <p class="card-text">"Saya suka belanja di sini karena dekat rumah dan selalu ada barang
                                 yang saya butuhkan."</p>
-                            <p class="text-warning">
-                                ★★★★★
-                            </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimoni 3 -->
                 <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card shadow-sm border-0 h-130">
                         <div class="card-body">
                             <h5 class="card-title">Agus Prasetyo</h5>
                             <p class="card-text">"Jam bukanya panjang, sangat membantu kalau butuh belanja malam-malam."
-                            </p>
-                            <p class="text-warning">
-                                ★★★★☆
                             </p>
                         </div>
                     </div>
@@ -295,6 +286,7 @@
                 link.classList.add("active");
             });
         });
+
         window.addEventListener("scroll", () => {
             let fromTop = window.scrollY + 80;
             navLinks.forEach((link) => {
