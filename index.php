@@ -12,7 +12,7 @@
 
     <script src="asset/js/jquery.js"></script>
     <script src="asset/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -131,13 +131,13 @@
     </section>
 
     <section id="tentang" style="scroll-margin-top: 0px;">
-        <div class="container" >
+        <div class="container">
             <h2 class="service-text text-center" style="padding-top: 90px;">Tentang Kami</h2>
             <div class="row align-items-center justify-content-center" style="padding-top: 40px;">
                 <div class="col-xl d-flex justify-content-center">
                     <img src="asset/img/mbako1.png" width="100%">
                 </div>
-                <div class="col-xl" >
+                <div class="col-xl">
                     <p class="tentang-text">
                         Sejak tahun 2020, <strong>Warung Pepak</strong> hadir sebagai solusi belanja kebutuhan
                         sehari-hari Anda.
@@ -175,7 +175,8 @@
         <div class="container text-center">
 
             <h2 class="service-text text-center">Kontak & Lokasi</h2>
-            <p class="mb-1" style="padding-top: 20px;">📍 Jl. Singosari Selatan II No. 24, Nusukan, Banjarsari, Surakarta</p>
+            <p class="mb-1" style="padding-top: 20px;">📍 Jl. Singosari Selatan II No. 24, Nusukan, Banjarsari,
+                Surakarta</p>
             <p class="mb-1">📞 WhatsApp: <a href="https://wa.me/6281575791089"
                     class="text-decoration-none">0815-7579-1089</a></p>
             <div class="d-flex justify-content-center">
@@ -199,41 +200,34 @@
     <section id="testimoni">
         <div class="container" style="padding-top: 50px;">
             <h3 class="testimoni-text text-center">Apa Kata Pelanggan Kami</h3>
+            <?php include("koneksi.php"); ?>
             <div class="row justify-content-center">
-
-                <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-130">
-                        <div class="card-body">
-                            <h5 class="card-title">Budi Santoso</h5>
-                            <p class="card-text">"Warung Pepak sangat lengkap dan harganya terjangkau. Pelayanannya juga
-                                ramah!"</p>
+                <?php
+                $sql = "SELECT nama, komentar FROM testimoni ORDER BY id DESC LIMIT 3";
+                $hasil = $conn->query(query: $sql);
+                if ($hasil->num_rows > 0) {
+                    while ($testimoni = $hasil->fetch_assoc()) {
+                        ?>
+                        <div class="col-md-4 mb-3">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?= htmlspecialchars(string: $testimoni["nama"]) ?>
+                                    </h5>
+                                    <p class="card-text">"
+                                        <?= htmlspecialchars(string: $testimoni["komentar"]) ?>"
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Testimoni 2 -->
-                <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-130">
-                        <div class="card-body">
-                            <h5 class="card-title">Siti Aminah</h5>
-                            <p class="card-text">"Saya suka belanja di sini karena dekat rumah dan selalu ada barang
-                                yang saya butuhkan."</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimoni 3 -->
-                <div class="col-md-4 ">
-                    <div class="card shadow-sm border-0 h-130">
-                        <div class="card-body">
-                            <h5 class="card-title">Agus Prasetyo</h5>
-                            <p class="card-text">"Jam bukanya panjang, sangat membantu kalau butuh belanja malam-malam."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+                        <?php
+                    }
+                } else {
+                    echo "<p class='text-center'>Belum ada testimoni.</p>";
+                }
+                ?>
             </div>
+
         </div>
     </section>
 
@@ -245,17 +239,16 @@
                 <div class="col-lg-8">
                     <div class="card border-0 rounded-3">
                         <div class="card-body">
-                            <form>
-
+                            <form action="simpan_komentar.php" method="POST">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Anda"
-                                        required>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        placeholder="Masukkan nama Anda" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="komentar" class="form-label">Komentar</label>
-                                    <textarea class="form-control" id="komentar" rows="4"
+                                    <textarea class="form-control" id="komentar" name="komentar" rows="4"
                                         placeholder="Tulis komentar Anda..." required></textarea>
                                 </div>
 
@@ -263,6 +256,7 @@
                                     <button type="submit" class="btn btn-primary">Kirim Komentar</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -301,61 +295,48 @@
             });
         });
 
-        const xValues = [
-            6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
-        ];
-        const yValues = [5, 9, 6, 10, 9, 18, 13, 5, 9, 11, 12, 10, 10, 15, 15, 10, 8];
+        fetch("get_pengunjung.php")
+            .then(response => response.json())
+            .then(data => {
+                const xValues = data.xValues;
+                const yValues = data.yValues; 
 
-        new Chart("myChart", {
-            type: "line",
-            data: {
-                labels: xValues,
-                datasets: [
+                new Chart(document.getElementById("myChart"),
                     {
-                        fill: false,
-                        lineTension: 0,
-                        backgroundColor: "rgba(0,0,255,1.0)",
-                        borderColor: "blue",
-                        data: yValues,
-                    },
-                ],
-            },
-            options: {
-                legend: { display: false },
-                scales: {
-                    xAxes: [
-                        {
-                            gridLines: {
-                                color: "rgba(0, 0, 0, 0.1)",
-                            },
-                            ticks: {
-                                fontColor: "black",
-                            },
-                            title: {
-                                display: true,
-                                text: "Bulan"
-                            },
+                        type: "line",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                label: "Jumlah",
+                                data: yValues,
+                                fill: false,
+                                borderColor: "blue",
+                                tension: 0
+                            }]
                         },
-                    ],
-                    yAxes: [
-                        {
-                            gridLines: {
-                                color: "rgba(0, 0, 0, 0.1)",
+                        options: {
+                            plugins: {
+                                legend: { display: false }
                             },
-                            ticks: {
-                                min: 0,
-                                max: 20,
-                                fontColor: "black",
-                            },
-                            title: {
-                                display: true,
-                                text: "Bulan"
-                            },
-                        },
-                    ],
-                },
-            },
-        });
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: "Jam ke-"
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: "Jumlah pengunjung"
+                                    },
+                                    min: 0,
+                                    max: 20
+                                }
+                            }
+                        }
+                    });
+            });
 
 
     </script>
