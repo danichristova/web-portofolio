@@ -1,6 +1,6 @@
 # 🌟 Warung Pepak Landing Page
 
-Selamat datang di repository **Warung Pepak**!  
+Selamat datang di branch Web-PHP **Warung Pepak**!  
 Website ini adalah landing page sederhana untuk memperkenalkan **Warung Pepak**, warung kebutuhan sehari-hari yang menyediakan berbagai sembako, bumbu dapur, hingga camilan malam hari.  
 
 🚀 Dibangun dengan HTML, CSS, Bootstrap, PHP, dan Chart.js.
