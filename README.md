@@ -1,6 +1,7 @@
 # Web-Portofolio Dani Christova
 
 Repository ini berisi source code untuk **Landing Page Warung Pepak**, sebuah website sederhana yang dibangun menggunakan **PHP, MySQL, Bootstrap, dan Chart.js**.  
+Website Online bisa di akses melalui https://warung.page.gd
 
 ---
 
@@ -25,5 +26,5 @@ Website ini dibuat untuk:
 
 ## 🔗 Akses Source Code
 
-Untuk melihat kode website, silakan checkout ke branch `Web-PHP`:
+Untuk melihat kode website, silakan checkout ke branch lainnya.
 
